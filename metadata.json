@@ -1,0 +1,6 @@
+{
+  "name": "Portafolio",
+  "description": "Portafolio clonado del repositorio consultoresptm-afk/brpchureptm",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
