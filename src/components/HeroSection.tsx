@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { Shield, Leaf, GraduationCap, Award, Map, Sprout } from "lucide-react";
-import logo from "@/assets/logo-ptm.jpg";
-import shieldIcon from "@/assets/shield-icon-new.jpg";
+import { Shield, Leaf, GraduationCap, Award, Map, Sprout, ArrowRight } from "lucide-react";
+import Navbar from "./Navbar";
 
 const pillars = [
   { icon: Leaf, label: "Ambiental" },
@@ -15,103 +14,112 @@ const pillars = [
 const HeroSection = () => {
   return (
     <>
-      {/* Logo Header */}
-      <header className="sticky top-0 z-50 bg-card/80 backdrop-blur-xl border-b border-border/50">
-        <div className="section-container flex items-center justify-center py-2 sm:py-3">
-          <div className="flex items-center gap-2 sm:gap-4 min-w-0">
-            <img src={logo} alt="Consultores PTM Logo" className="h-10 sm:h-14 w-auto object-contain shrink-0" />
-            <div className="min-w-0">
-              <h1 className="text-sm sm:text-lg font-heading font-bold text-foreground leading-tight truncate">
-                Consultores PTM
-              </h1>
-              <p className="text-[10px] sm:text-xs font-body text-muted-foreground truncate">
-                Gestión & Cumplimiento SAS
-              </p>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative min-h-[80vh] sm:min-h-[85vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 gradient-emerald opacity-95" />
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 50%, hsla(155,30%,40%,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 20%, hsla(42,80%,55%,0.15) 0%, transparent 50%)",
-          }}
+      <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-premium-dark pt-20">
+        {/* Subtle noise texture */}
+        <div className="absolute inset-0 bg-noise opacity-30 mix-blend-overlay" />
+        
+        {/* Abstract animated geometric shapes */}
+        <motion.div 
+          className="absolute right-[-10%] top-[10%] w-[500px] h-[500px] rounded-full border border-white/5 opacity-50"
+          animate={{ rotate: 360, scale: [1, 1.05, 1] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div 
+          className="absolute right-[-5%] top-[20%] w-[350px] h-[350px] rounded-full border border-[#D4A853]/10 opacity-30"
+          animate={{ rotate: -360, scale: [1, 1.1, 1] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
 
-        <div className="relative z-10 section-container text-center py-12 sm:py-16 lg:py-20">
+        <div className="relative z-10 section-container text-center py-12 lg:py-20 flex flex-col items-center">
+          
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-4xl mx-auto"
           >
-            <div className="mb-4 sm:mb-6">
-              <img src={shieldIcon} alt="Escudo de excelencia" className="h-20 w-20 sm:h-28 sm:w-28 object-contain drop-shadow-lg mx-auto rounded-full" style={{ mixBlendMode: 'multiply' }} />
-            </div>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-bold text-primary-foreground leading-tight mb-3 sm:mb-4 text-balance">
-              Consultores PTM
+            {/* Title with reveal-like effect */}
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-heading font-extrabold text-white leading-[1.1] mb-6 tracking-tight">
+              Excelencia Operacional y <br className="hidden sm:block" />
+              <span className="text-gradient-gold">Cumplimiento Normativo</span>
             </h2>
-            <p className="text-lg sm:text-2xl font-heading font-light text-primary-foreground/80 mb-2">
-              Gestión & Cumplimiento SAS
+            
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#D4A853]" />
+              <p className="text-lg sm:text-2xl font-body font-light text-white/90">
+                Gestión Ambiental, SST y Calidad de Clase Mundial
+              </p>
+              <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#D4A853]" />
+            </div>
+
+            <p className="text-white/70 font-body leading-relaxed text-sm sm:text-lg max-w-2xl mx-auto mb-12">
+              Orientamos a las organizaciones hacia la excelencia, integrando estrategias avanzadas de
+              sostenibilidad y tecnología para garantizar el cumplimiento normativo integral.
             </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-6 sm:mt-8 max-w-3xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.3 } }
+            }}
+            className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-14 max-w-3xl"
           >
-            <h3 className="text-xl sm:text-3xl font-heading font-semibold text-primary-foreground mb-4 sm:mb-6">
-              Quiénes Somos
-            </h3>
-            <p className="text-primary-foreground/80 font-body leading-relaxed text-sm sm:text-lg">
-              Somos un equipo integrado por expertos multidisciplinarios en la Gestión Ambiental,
-              Seguridad y Salud en el Trabajo (SST) y Calidad, en diferentes modelos de producción
-              y servicios. Nos dedicamos a orientar a las organizaciones hacia el cumplimiento
-              normativo integral y la excelencia operacional, integrando estrategias avanzadas de
-              sostenibilidad y tecnología.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-8 sm:mt-12 flex flex-wrap justify-center gap-2 sm:gap-3"
-          >
-            {pillars.map((p, i) => (
+            {pillars.map((p) => (
               <motion.div
                 key={p.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.8 + i * 0.1 }}
-                className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-3 rounded-full bg-primary-foreground/10 backdrop-blur-md border border-gold/20"
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8, y: 20 },
+                  visible: { opacity: 1, scale: 1, y: 0 }
+                }}
+                whileHover={{ scale: 1.05 }}
+                className="group flex items-center gap-2.5 px-5 py-2.5 rounded-full glass-panel-dark hover:shadow-[0_0_15px_rgba(49,132,155,0.5)] transition-all duration-300 cursor-default"
               >
-                <p.icon className="w-4 h-4 sm:w-5 sm:h-5 text-gold" />
-                <span className="text-xs sm:text-sm font-medium text-primary-foreground/90">{p.label}</span>
+                <p.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white/80 group-hover:text-[#D4A853] transition-colors" />
+                <span className="text-xs sm:text-sm font-medium text-white/90 tracking-wide">{p.label}</span>
               </motion.div>
             ))}
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 1 }}
-            className="mt-10 sm:mt-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+            className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6"
           >
-            <a
-              href="#servicios"
-              className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 rounded-full gradient-emerald border border-gold/30 text-primary-foreground font-medium hover:shadow-lg hover:shadow-gold/20 transition-all duration-300 text-xs sm:text-sm"
-            >
-              Descubre nuestros servicios ↓
+            <a href="#contacto" className="btn-premium w-full sm:w-auto">
+              Solicitar Consulta 
+              <ArrowRight className="w-5 h-5" />
+            </a>
+            <a href="#servicios" className="btn-outline-premium w-full sm:w-auto">
+              Nuestros Servicios
             </a>
           </motion.div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+        >
+          <span className="text-[10px] uppercase tracking-[0.2em] text-white/50 font-heading">Descubrir</span>
+          <div className="w-[1px] h-12 bg-white/10 overflow-hidden relative">
+            <motion.div 
+              className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-transparent via-[#D4A853] to-transparent"
+              animate={{ top: ['-50%', '150%'] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            />
+          </div>
+        </motion.div>
       </section>
     </>
   );

@@ -1,76 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Figtree:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* PTM Corporate Colors */
+    --ptm-teal: #31849B;
+    --ptm-silver: #CAD4D6;
+    --ptm-gold: #D4A853;
+    --ptm-bg-dark: #0D1B2A;
+    --ptm-bg-light: #F8F9FA;
+
+    --background: 0 0% 98%;
+    --foreground: 213 52% 11%; /* #0D1B2A approx */
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 213 52% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 213 52% 11%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 193 52% 40%; /* #31849B */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 190 16% 82%; /* #CAD4D6 */
+    --secondary-foreground: 213 52% 11%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 190 16% 92%;
+    --muted-foreground: 213 20% 40%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 40 60% 68%; /* #D4A853 approx */
+    --accent-foreground: 213 52% 11%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 190 16% 82%;
+    --input: 190 16% 82%;
+    --ring: 193 52% 40%;
 
     --radius: 0.5rem;
-
-    --emerald-deep: 158 64% 22%;
-    --emerald-mid: 158 64% 35%;
-    --emerald-light: 158 64% 50%;
-    --slate-dark: 215 25% 27%;
-    --slate-mid: 215 16% 47%;
-    --slate-light: 210 40% 96%;
-    --gold-accent: 43 74% 49%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
   }
 }
 
@@ -79,6 +50,160 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[var(--ptm-bg-light)] text-[var(--ptm-bg-dark)] font-body antialiased;
+    scroll-behavior: smooth;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
   }
 }
+
+@layer components {
+  .section-container {
+    @apply container mx-auto px-6 sm:px-8 lg:px-12 max-w-7xl;
+  }
+
+  /* Glassmorphism Utilities */
+  .glass-panel {
+    @apply bg-white/10 backdrop-blur-[12px] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)];
+  }
+  
+  .glass-panel-dark {
+    @apply bg-[#0D1B2A]/70 backdrop-blur-[12px] border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.2)];
+  }
+
+  /* Text Gradients & Highlights */
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#D4A853] to-[#F3D58E];
+  }
+  
+  .text-gradient-teal {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#31849B] to-[#45ADC9];
+  }
+
+  /* Background Gradients */
+  .bg-gradient-premium-dark {
+    @apply bg-gradient-to-br from-[#0D1B2A] via-[#1a3a4a] to-[#31849B];
+  }
+
+  .bg-gradient-teal-gold {
+    @apply bg-gradient-to-r from-[#31849B] to-[#D4A853];
+  }
+  
+  .bg-gradient-teal {
+    @apply bg-gradient-to-br from-[#1a4a5a] to-[#31849B];
+  }
+
+  /* Buttons */
+  .btn-premium {
+    @apply relative overflow-hidden inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-gradient-teal-gold text-white font-heading font-semibold tracking-wide shadow-lg shadow-[#31849B]/30 hover:shadow-[#D4A853]/40 hover:-translate-y-1 transition-all duration-300;
+  }
+  
+  .btn-premium::after {
+    content: '';
+    @apply absolute inset-0 bg-white/20 translate-y-full transition-transform duration-300 ease-out;
+  }
+  .btn-premium:hover::after {
+    @apply translate-y-0;
+  }
+
+  .btn-outline-premium {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/30 text-white font-heading font-medium backdrop-blur-sm hover:bg-white/10 hover:border-white/60 transition-all duration-300;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(49, 132, 155, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px 0 rgba(49, 132, 155, 0.8);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes expand-line {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-expand-line {
+  animation: expand-line 1s ease-out forwards;
+}
+
+/* Noise overlay */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+

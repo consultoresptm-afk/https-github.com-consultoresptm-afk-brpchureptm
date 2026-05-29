@@ -3,13 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Briefcase, FileCheck, Search, ArrowLeft, ChevronRight, CheckCircle2 } from "lucide-react";
 import { servicesData, type MainCategory, type SubCategory } from "@/data/services";
 
+// Keeping the assets for potential background if needed, but styling favors #F8F9FA base.
 import bgAmbiental from "@/assets/bg-ambiental.jpg";
 import bgSst from "@/assets/bg-sst.jpg";
 import bgCalidad from "@/assets/bg-calidad.jpg";
 import bgEducacion from "@/assets/bg-educacion.jpg";
 import bgSig from "@/assets/bg-sig.jpg";
 import bgSostenibilidad from "@/assets/bg-sostenibilidad.jpg";
-import bgServicios from "@/assets/bg-servicios.png";
 import bgPlaneacion from "@/assets/bg-planeacion.jpg";
 import bgEnergia from "@/assets/bg-energia.jpg";
 import bgAuditorias from "@/assets/bg-auditorias.jpg";
@@ -60,18 +60,9 @@ const ServicesHub = () => {
       : null;
 
   return (
-    <section id="servicios" className="py-14 sm:py-20 lg:py-24 bg-muted/30 relative overflow-hidden">
-      {/* Static background image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={bgServicios}
-          alt=""
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-[2px]" />
-      </div>
-      {/* Dynamic background image */}
+    <section id="servicios" className="py-20 lg:py-32 bg-[var(--ptm-bg-light)] relative overflow-hidden">
+      
+      {/* Dynamic background image for details view */}
       <AnimatePresence>
         {currentBg && (
           <motion.div
@@ -88,7 +79,7 @@ const ServicesHub = () => {
               className="w-full h-full object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-background/85 backdrop-blur-sm" />
+            <div className="absolute inset-0 bg-[#0D1B2A]/85 backdrop-blur-[4px]" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -99,17 +90,21 @@ const ServicesHub = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-16"
+          className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-foreground mb-3">
-            Nuestros Servicios
-          </h2>
-          <p className="text-sm sm:text-base text-foreground max-w-xl mx-auto px-2">
-            Explore nuestras áreas de especialización y descubra cómo podemos ayudarle.
+          <div className="inline-flex items-center gap-4 mb-4">
+            <div className="h-px w-8 bg-[#31849B]" />
+            <h2 className="text-3xl lg:text-5xl font-heading font-extrabold text-[#0D1B2A] tracking-tight">
+              Nuestros <span className="text-[#31849B]">Servicios</span>
+            </h2>
+            <div className="h-px w-8 bg-[#31849B]" />
+          </div>
+          <p className="text-base text-[#0D1B2A]/70 max-w-xl mx-auto">
+            Soluciones integrales diseñadas para el cumplimiento y la excelencia empresarial
           </p>
         </motion.div>
 
-        <div className="min-h-[420px] sm:min-h-[480px] relative">
+        <div className="min-h-[480px] relative">
           <AnimatePresence mode="wait">
             {view.level === "main" && (
               <motion.div
@@ -118,7 +113,7 @@ const ServicesHub = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 30 }}
                 transition={{ duration: 0.35 }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                className="grid grid-cols-1 md:grid-cols-3 gap-8"
               >
                 {servicesData.map((cat, i) => {
                   const Icon = iconMap[cat.icon] || Briefcase;
@@ -126,20 +121,35 @@ const ServicesHub = () => {
                     <motion.button
                       key={cat.id}
                       initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.1, duration: 0.4 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
                       onClick={() => setView({ level: "sub", category: cat })}
-                      className="glass-card-emerald rounded-xl p-6 sm:p-8 text-left group hover:scale-[1.02] transition-transform duration-300 cursor-pointer"
+                      className="group relative bg-white rounded-2xl p-8 text-left transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(49,132,155,0.2)] focus:outline-none overflow-hidden"
                     >
-                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg gradient-emerald flex items-center justify-center mb-4 sm:mb-5">
-                        <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary-foreground" />
+                      {/* Top Gradient Border */}
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-teal-gold" />
+
+                      <div className="flex justify-between items-start mb-8">
+                        <div className="w-14 h-14 rounded-full bg-gradient-teal flex items-center justify-center p-0.5 group-hover:shadow-[0_0_20px_rgba(49,132,155,0.4)] transition-all duration-300">
+                          <div className="w-full h-full rounded-full border border-white/20 flex items-center justify-center">
+                            <Icon className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" />
+                          </div>
+                        </div>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#31849B] bg-[#31849B]/10 px-3 py-1 rounded-full">
+                          {cat.subCategories.length} Especialidades
+                        </span>
                       </div>
-                      <h3 className="text-lg sm:text-xl font-heading font-semibold text-foreground mb-2">
+                      
+                      <h3 className="text-xl font-heading font-bold text-[#0D1B2A] mb-3 group-hover:text-[#31849B] transition-colors">
                         {cat.label}
                       </h3>
-                      <p className="text-sm font-medium text-foreground/90 mb-4">{cat.description}</p>
-                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-foreground group-hover:gap-2 transition-all">
-                        Explorar <ChevronRight className="w-4 h-4" />
+                      <p className="text-sm font-body text-[#0D1B2A]/70 mb-8 leading-relaxed">
+                        {cat.description}
+                      </p>
+                      
+                      <span className="inline-flex items-center justify-center w-full gap-2 px-6 py-3 rounded-xl bg-[#31849B] text-white font-medium text-sm hover:bg-[#1a4a5a] transition-colors">
+                        Ver Detalles <ChevronRight className="w-4 h-4" />
                       </span>
                     </motion.button>
                   );
@@ -156,27 +166,32 @@ const ServicesHub = () => {
                 transition={{ duration: 0.35 }}
               >
                 <BackButton onClick={goBack} label="Volver a Servicios" />
-                <h3 className="text-xl sm:text-2xl font-heading font-bold text-foreground mt-3 mb-6 sm:mb-8">
-                  {view.category.label}
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="flex items-center gap-3 mt-4 mb-8">
+                  <div className="w-2 h-8 bg-[#D4A853] rounded-full" />
+                  <h3 className="text-2xl lg:text-3xl font-heading font-bold text-[#0D1B2A]">
+                    {view.category.label}
+                  </h3>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {view.category.subCategories.map((sub, i) => (
                     <motion.button
                       key={sub.id}
                       initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.08, duration: 0.35 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.08, duration: 0.4 }}
                       onClick={() =>
                         setView({ level: "detail", category: view.category, sub })
                       }
-                      className="glass-card rounded-xl p-6 text-left group hover:scale-[1.02] transition-transform duration-300 cursor-pointer border-l-4"
-                      style={{ borderLeftColor: 'rgb(49, 132, 155)' }}
+                      className="group bg-white rounded-xl p-6 text-left border-l-[4px] border-[#31849B] hover:bg-[#31849B]/[0.02] transition-colors duration-300 hover:shadow-[0_10px_30px_-10px_rgba(13,27,42,0.1)] flex flex-col justify-between min-h-[140px]"
                     >
-                      <h4 className="text-lg font-heading font-semibold text-foreground mb-1">
+                      <h4 className="text-lg font-heading font-bold text-[#0D1B2A] mb-3 group-hover:text-[#31849B] transition-colors">
                         {sub.label}
                       </h4>
-                      <span className="inline-flex items-center gap-1 text-xs font-medium text-gold group-hover:gap-2 transition-all">
-                        Ver detalle <ChevronRight className="w-3 h-3" />
+                      <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#D4A853]">
+                        Ver detalle 
+                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </span>
                     </motion.button>
                   ))}
@@ -191,26 +206,31 @@ const ServicesHub = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -30 }}
                 transition={{ duration: 0.35 }}
+                className={`${currentBg ? 'text-white' : ''}`}
               >
-                <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6">
-                  <BackButton onClick={goBack} label={`Volver a ${view.category.label}`} />
-                  <BackButton onClick={goToMain} label="Volver al Menú Principal" />
+                <div className="flex flex-wrap items-center gap-4 mb-8">
+                  <BackButton onClick={goBack} label={`Volver a ${view.category.label}`} light={!!currentBg} />
+                  <BackButton onClick={goToMain} label="Menú Principal" light={!!currentBg} />
                 </div>
-                <div className="glass-card rounded-xl p-5 sm:p-8 max-w-2xl border border-gold/10">
-                  <h3 className="text-xl sm:text-2xl font-heading font-bold text-foreground mb-4 sm:mb-6">
+                <div className={`rounded-2xl p-8 lg:p-10 max-w-3xl ${currentBg ? 'glass-panel-dark' : 'bg-white shadow-xl shadow-black/5 border border-black/5'}`}>
+                  <h3 className={`text-2xl lg:text-3xl font-heading font-bold mb-6 ${currentBg ? 'text-white' : 'text-[#0D1B2A]'}`}>
                     {view.sub.details.title}
                   </h3>
-                  <ul className="space-y-3">
+                  <ul className="space-y-4">
                     {view.sub.details.items.map((item, i) => (
                       <motion.li
                         key={i}
                         initial={{ opacity: 0, x: 10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.06, duration: 0.3 }}
-                        className="flex items-start gap-3"
+                        className="flex items-start gap-4"
                       >
-                        <CheckCircle2 className="w-5 h-5 text-gold mt-0.5 shrink-0" />
-                        <span className="text-sm sm:text-base text-foreground/85">{item}</span>
+                        <div className={`mt-1 w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${currentBg ? 'bg-white/10' : 'bg-[#31849B]/10'}`}>
+                          <CheckCircle2 className="w-4 h-4 text-[#D4A853]" />
+                        </div>
+                        <span className={`text-base font-body leading-relaxed ${currentBg ? 'text-white/90' : 'text-[#0D1B2A]/80'}`}>
+                          {item}
+                        </span>
                       </motion.li>
                     ))}
                   </ul>
@@ -224,10 +244,12 @@ const ServicesHub = () => {
   );
 };
 
-const BackButton = ({ onClick, label }: { onClick: () => void; label: string }) => (
+const BackButton = ({ onClick, label, light = false }: { onClick: () => void; label: string; light?: boolean }) => (
   <button
     onClick={onClick}
-    className="inline-flex items-center gap-2 text-sm font-medium text-gold hover:text-accent transition-colors cursor-pointer"
+    className={`inline-flex items-center gap-2 text-sm font-heading font-semibold uppercase tracking-wider transition-all hover:-translate-x-1 ${
+      light ? 'text-[#D4A853] hover:text-white' : 'text-[#31849B] hover:text-[#D4A853]'
+    }`}
   >
     <ArrowLeft className="w-4 h-4" />
     {label}
