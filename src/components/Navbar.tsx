@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import logo from '@/assets/logo-ptm.jpg'; // We can keep using the old logo or recreate it. Note: Wait, I'll use text if the logo is "roto" per the prompt. It says "Logo a la izquierda + nombre empresa".
+import logo from '@/assets/Logo_corporativo_clean.png';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -25,10 +25,8 @@ const Navbar = () => {
       <div className="section-container flex items-center justify-between">
         <div className="flex items-center gap-3">
           {/* Logo container area */}
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#31849B] to-[#D4A853] flex items-center justify-center p-0.5">
-            <div className="w-full h-full bg-[#0D1B2A] rounded-full flex items-center justify-center">
-              <span className="text-white font-heading font-bold text-xs tracking-wider">PTM</span>
-            </div>
+          <div className="w-14 sm:w-16 h-14 sm:h-16 flex items-center justify-center shrink-0 transition-transform duration-300 hover:scale-105">
+            <img src={logo} alt="Consultores PTM Logo" className="w-full h-full object-contain" />
           </div>
           <div className="hidden sm:block">
             <h1 className={`font-heading font-bold text-lg leading-none ${scrolled ? 'text-white' : 'text-[#0D1B2A]'}`}>

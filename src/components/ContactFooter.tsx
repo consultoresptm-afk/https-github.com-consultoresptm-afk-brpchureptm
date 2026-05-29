@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, User, Send, MessageCircle } from "lucide-react";
-import logo from "@/assets/logo-ptm.jpg"; // Actually, let's use the CSS-based logo or this image if needed
+import logo from "@/assets/Logo_corporativo_clean.png";
 
 const ContactFooter = () => (
   <footer id="contacto" className="relative flex flex-col bg-[#0D1B2A] overflow-hidden">
@@ -123,10 +123,8 @@ const ContactFooter = () => (
           
           <div className="flex flex-col items-start gap-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-teal-gold flex items-center justify-center p-0.5">
-                <div className="w-full h-full bg-[#0D1B2A] rounded-full flex items-center justify-center">
-                  <span className="text-white font-heading font-bold text-xs tracking-wider">PTM</span>
-                </div>
+              <div className="w-16 h-16 flex items-center justify-center shrink-0 transition-transform duration-300 hover:scale-105">
+                <img src={logo} alt="Consultores PTM Logo" className="w-full h-full object-contain" />
               </div>
               <div>
                 <h1 className="font-heading font-bold text-white text-lg leading-none">Consultores PTM</h1>
