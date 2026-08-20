@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Menu, X } from 'lucide-react';
-import logo from '@/assets/Logo_corporativo_clean.png';
+import logo from '@/assets/Logo_corporativo.png';
 import { Logo3D } from './Logo3D';
 
 const Navbar = () => {
@@ -31,7 +31,7 @@ const Navbar = () => {
         }`}
       >
         <a href="#" className="flex items-center gap-3 shrink-0">
-          <Logo3D src={logo} alt="Consultores PTM Logo" className="w-12 h-12" />
+          <Logo3D src={logo} alt="Logo Consultores PTM" className="w-12 h-12" />
         </a>
         
         <div className="hidden md:flex items-center gap-6 ml-7">

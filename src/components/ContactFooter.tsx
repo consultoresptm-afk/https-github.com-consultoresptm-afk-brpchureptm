@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, User, Send, MessageCircle } from "lucide-react";
-import logo from "@/assets/Logo_corporativo_clean.png";
+import logo from "@/assets/Logo_corporativo.png";
 import { Logo3D } from "./Logo3D";
 
 const ContactFooter = () => (
@@ -124,7 +124,7 @@ const ContactFooter = () => (
           
           <div className="flex flex-col items-start gap-6">
             <div className="flex items-center gap-3">
-              <Logo3D src={logo} alt="Consultores PTM Logo" className="w-16 h-16 shrink-0" />
+              <Logo3D src={logo} alt="Logo Consultores PTM" className="w-16 h-16 shrink-0" />
               <div>
                 <h1 className="font-heading font-bold text-white text-lg leading-none">Consultores PTM</h1>
                 <p className="font-body text-[10px] uppercase tracking-wider text-white/50">Gestión & Cumplimiento</p>
