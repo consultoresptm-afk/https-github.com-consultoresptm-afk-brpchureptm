@@ -150,7 +150,6 @@ const ContactFooter = () => (
             <h4 className="text-white font-heading font-semibold mb-2">Información Legal</h4>
             <p className="text-sm text-[#CAD4D6]/60 leading-relaxed">
               Consultores PTM Gestión & Cumplimiento SAS.<br/>
-              NIT: 901.XXX.XXX-X<br/>
               Bogotá D.C., Colombia
             </p>
           </div>

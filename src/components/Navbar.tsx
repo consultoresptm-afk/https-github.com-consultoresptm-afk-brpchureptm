@@ -51,7 +51,7 @@ const Navbar = () => {
             Contacto
           </a>
           <a
-            href="#servicios"
+            href="#contacto"
             className="bg-white hover:shadow-[0px_0px_30px_14px] shadow-[0px_0px_30px_7px] hover:shadow-white/50 shadow-white/50 text-black px-4 py-2 rounded-full text-sm font-medium hover:bg-slate-100 transition duration-300"
           >
             Solicitar Consulta
@@ -94,7 +94,7 @@ const Navbar = () => {
               Contacto
             </a>
             <a
-              href="#servicios"
+              href="#contacto"
               onClick={() => setMobileMenuOpen(false)}
               className="bg-white hover:shadow-[0px_0px_20px_5px] shadow-white/30 text-black px-6 py-2 rounded-full text-sm font-medium hover:bg-slate-100 transition duration-300"
             >
